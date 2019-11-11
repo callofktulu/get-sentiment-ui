@@ -5,7 +5,7 @@
       app
     >
       <v-list dense>
-        <v-list-item link href="/home">
+        <v-list-item link>
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -13,20 +13,12 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link href="/about">
-          <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Single Word</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
         <v-list-item link>
           <v-list-item-action>
             <v-icon>mdi-contact-mail</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Text analysis</v-list-item-title>
+            <v-list-item-title>Contact</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -34,11 +26,11 @@
 
     <v-app-bar
       app
-      color="blue"
+      color="indigo"
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Sentiment Analyzer</v-toolbar-title>
+      <v-toolbar-title>Application</v-toolbar-title>
     </v-app-bar>
 
     <v-content>
@@ -51,48 +43,55 @@
           justify="center"
         >
           <v-col class="text-center">
-            <v-card width="400">
-              <v-textarea placeholder="Type the word here"/>
-              <v-btn color="primary" > Analyze</v-btn>
-            </v-card>
-
-            <!-- <v-tooltip left>
-              
+            <v-tooltip left>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  :href="source"
+                  icon
+                  large
+                  target="_blank"
+                  v-on="on"
+                >
+                  <v-icon large>mdi-code-tags</v-icon>
+                </v-btn>
+              </template>
+              <span>Source</span>
             </v-tooltip>
 
             <v-tooltip right>
-              
-            </v-tooltip> -->
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  icon
+                  large
+                  href="https://codepen.io/johnjleider/pen/zgxeLQ"
+                  target="_blank"
+                  v-on="on"
+                >
+                  <v-icon large>mdi-codepen</v-icon>
+                </v-btn>
+              </template>
+              <span>Codepen</span>
+            </v-tooltip>
           </v-col>
         </v-row>
       </v-container>
-
     </v-content>
     <v-footer
-      color="blue"
+      color="indigo"
       app
     >
-      <span class="white--text">&copy; 2019 Tuğrul Ertürk</span>
+      <span class="white--text">&copy; 2019</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld';
-// import HelloWorld from './components/SingleUnit';
-
-export default {
-  name: 'App',
-  props: {
+  export default {
+    props: {
       source: String,
     },
-  components: {
-    // HelloWorld,
-    // SingleUnit,    
-  },
-
-  data: () => ({
-    drawer: null,
-  }),
-};
+    data: () => ({
+      drawer: null,
+    }),
+  }
 </script>
