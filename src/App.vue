@@ -50,19 +50,22 @@
           align="center"
           justify="center"
         >
-          <v-col class="text-center">
-            <v-card width="400">
-              <v-textarea placeholder="Type the word here"/>
-              <v-btn color="primary" > Analyze</v-btn>
-            </v-card>
+          <v-col class="col-4">
+              <v-card>
+                <v-form>
+                  <v-text-field v-model="word" placeholder="Type the word here" class="ma-3"/>
+                  <v-spacer></v-spacer>
+                  <v-btn 
+                    color="success" 
+                    class="ma-3 justify-right"
+                    v-on:click="getSentiment(word)">Analyze</v-btn>
+                </v-form>
+              </v-card>
+          </v-col>
+          <v-col class="col-8">
 
-            <!-- <v-tooltip left>
-              
-            </v-tooltip>
+              {{ sentiment }}
 
-            <v-tooltip right>
-              
-            </v-tooltip> -->
           </v-col>
         </v-row>
       </v-container>
@@ -80,19 +83,28 @@
 <script>
 // import HelloWorld from './components/HelloWorld';
 // import HelloWorld from './components/SingleUnit';
+import axios from 'axios'
 
 export default {
   name: 'App',
   props: {
       source: String,
+      word: String
     },
+  methods: {
+    getSentiment(){
+      axios
+        .get('http://127.0.0.1:8000/sentiment/' + this.word)
+        .then(response => (this.sentiment = response))
+    }
+  },
   components: {
     // HelloWorld,
     // SingleUnit,    
   },
-
   data: () => ({
     drawer: null,
-  }),
+    sentiment: null
+  })
 };
 </script>
