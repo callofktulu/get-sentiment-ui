@@ -1,9 +1,18 @@
 <template>
-  <div class="about">
-    <h1>About Sentiment Analyzer</h1>
-    <p>
-      Sentiment analyzer is being developed by Tuğrul Ertürk as a part of his PhD in University of Granada.
-    </p>
-
+  <div>
+     <MultiWord msg="Sentiment Analyzer by Tugrul Erturk"/>
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+// import HelloWorld from '@/components/HelloWorld.vue'
+import MultiWord from '@/components/MultiWord.vue'
+
+export default {
+  name: 'home',
+  components: {
+    MultiWord
+  }
+}
+</script>
